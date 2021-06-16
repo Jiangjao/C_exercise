@@ -11,7 +11,9 @@ int main(){
     short int i = 13;
     long int j = 123456001;
     puts("I said C language is very good");
-    printf("short=%d, int=%d, long=%d\n",i, interget, j);
+    printf("short=%hd, int=%d, long=%ld\n",i, interget, j);
+    //无符号类型.
+    printf("short=%hu, int=%u, long=%lu\n",i, interget, j);
     return 0;
 }
 
