@@ -124,7 +124,7 @@ int main()
         for (y=0; y<j; y++){
             scanf("%d", &a[y][x]);
             b[x][y] = a[y][x];
-            printf("the digit element of b is %d", b[x][y]);
+           // printf("the digit element of b is %d", b[x][y]);
         }
     }
     return 0;
