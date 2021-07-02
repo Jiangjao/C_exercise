@@ -53,7 +53,24 @@ int main(){
 }
 
 ### 4、编写程序，从键盘输入一个数，求出这个数的阶乘。
-
+int factorial(int a){
+    int i = 1;
+    int index = 1;
+    if(a ==1 || a==0){
+        i = 1;
+    }
+    for(index; index <= a; index++){
+        i *= index;
+    }
+    printf("%d",i);
+    return i;
+}
+int main(){
+    int i, j;
+    scanf("%d", &i);
+    factorial(i);
+    return 0;
+}
 ## 三、纠错题
 ### 判断下面的函数定义是否正确？如果不正确，指出错误。
 void salami(num)
@@ -65,10 +82,10 @@ void salami(num)
     }
 }
 ----------------------------------------------------------
-void salami(int num, int count)   // 未指明类型，且少了参数
+void salami(int num)   // 未指明类型，且少了参数
 {
     int num, count;
-    for(count = 1; count <= num; num++)
+    for(count = 1; count <= num; num++)  // 死循环
     {
         printf(" o salami mio!");
     }
