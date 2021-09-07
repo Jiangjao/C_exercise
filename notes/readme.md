@@ -18,3 +18,7 @@ p is a pointer to const char;
 
 char const * p;
 同上因为C++里面没有const*的运算符，所以const只能属于前面的类型。
+
+### EOF
+EOF 本来表示文件末尾，意味着读取结束，但是很多函数读取错误时也返回EOF，
+那么当返回EOF时，到底是文件读取完毕了还是读取错误了？可以借助stdio.h中的两个函数判断。
