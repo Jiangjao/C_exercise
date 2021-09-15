@@ -1,3 +1,11 @@
+<!--
+ * @Author: xiao jiao
+ * @Date: 2021-08-09 11:29:36
+ * @LastEditTime: 2021-09-15 11:21:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \geekbang\C_exercise\notes\readme.md
+-->
 ## 普通warning
 ### 中文乱码改变方式
 chcp 65001
@@ -22,3 +30,12 @@ char const * p;
 ### EOF
 EOF 本来表示文件末尾，意味着读取结束，但是很多函数读取错误时也返回EOF，
 那么当返回EOF时，到底是文件读取完毕了还是读取错误了？可以借助stdio.h中的两个函数判断。
+
+### 字符与字符数组
+字符的索引值是个偏移量，计算机在存储器中以连续字节的形式保存字符，并用索引计算字符在存储器中的位置。
+那么，就是说，当时设计的时候，计算机并不清楚字符串的长度。
+
+那么，结尾处就得加上一个NUL ，在ASCII码中叫做 \0(哨兵),来表明其结尾。
+- 双引号定义的字符串又叫做字符串字面量(string literal)
+- 字符串字面量是常量；
+- 所处位置也不同？
