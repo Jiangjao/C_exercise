@@ -1,7 +1,7 @@
 <!--
  * @Author: xiao jiao
  * @Date: 2021-08-09 11:29:36
- * @LastEditTime: 2021-09-18 19:07:03
+ * @LastEditTime: 2021-09-21 09:46:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \geekbang\C_exercise\notes\readme.md
@@ -42,17 +42,28 @@ EOF 本来表示文件末尾，意味着读取结束，但是很多函数读取�
 
 ### 联合
 ```c
-    typedef union{
-        short count;
-        float weight;
-        float volume;
-    }  quantity;
-    // C89表示法只能设置第一个字段
+#include <stdio.h>
+typedef union{
+    short count;
+    float weight;
+    float volume;
+}  quantity;
+// C89表示法只能设置第一个字段
+int main(){
     quantity q = {4};
-    // 指定初始化器(designated initializer)
+    // 指定初始化器(designated initializer),这个也可以设计struct的值
     quantity q = {.weight=1.5};
     // 点表示法
     quantity q;
     q.volume = 3.7;
+    return 0;
+}
+
 ```
 无论用哪种方法设置联合的值，都会保存一条数据。联合只是提供了方法。
+
+### C语言的堆
+C语言非常古老，发明它的时候，绝大多数语言都没有自动“垃圾回收”装置
+-   使用strup()函数会调用malloc()函数吗？
+    -   这个取决于C标准库是如何实现的，通常情况下，是这样的。
+操作系统会在程序(进程)结束时清除所有存储器。
