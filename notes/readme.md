@@ -1,11 +1,3 @@
-<!--
- * @Author: xiao jiao
- * @Date: 2021-08-09 11:29:36
- * @LastEditTime: 2021-09-25 09:48:12
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \geekbang\C_exercise\notes\readme.md
--->
 ## 普通warning
 ### 中文乱码改变方式
 chcp 65001
@@ -85,3 +77,52 @@ C语言非常古老，发明它的时候，绝大多数语言都没有自动“�
 函数指针数组,一种更复杂的表示方式:
 -   replies[] = {dump, second_chance, marriage};
     -   void (*replies[])(response) = {dump, second_chance, marriage};
+
+### 标准头文件目录
+通常类UNIX操作系统(如Mac或Linux)中，编译器会在以下目录查找头文件：
+/usr/local/include
+/usr/include
+
+如果是MinGW的gcc,编译器会在下面这个目录中查找:
+C:\MinGW\include
+
+#### 共享.h头文件
+1.  将头文件复制到/usr/local/include这样的标准目录中，就可以在源代码中用尖括号使用
+    -   #include <encrypt.h>
+2.  在include语句中使用完整语句路径名。
+    -   #include "/my_header_files/encrypt.h"
+3.  告诉编译器去哪里找头文件。
+    -   可以使用gcc的-I选项
+    -   gcc -I/my_header_files test_code ... -o test_code
+
+### 动态库
+绝大部分操作系统都支持动态库
+gcc -shared hfcal.o -o
+
+-shared选项告诉gcc你想把.o目标文件转化为动态库。编译
+器创建动态库时会把库的名字保存在文件中，假设你在Linux
+中创建了一个叫libhfcal.so的库，那么libhfcal.so文件就会记住它的库名叫hfcal。也就是说，一旦你用某个名字编译了库，就不能再修改文件名了，这一点很重要。
+若想重命名库，就必须用新的名字重新编译一次。
+- windows的MinGW
+  - C:\libs\hfcal.dll
+-   windows的Cygwin
+    -  /libs/libhfcal.dll.a
+-    Linux或Unix
+    -  /libs/libhfcal.so
+-  Mac
+   -  /libs/libhfcal.dylib
+
+#### Linux动态库的使用
+但Linux就不一样了。
+在Linux和大部分Unix中，编译器只会记录libhfcal.so库的文件名，
+而不会包含路径名。也就是说如果不把hfcal库保存到标准目录（如
+/usr/lib），程序就找不到它。为了解决这个问题，Linux会检查保
+存在LD_LIBR ARY_PATH变量中的附加目录。只要把库目录添加
+到LD_LIBRARY_PATH中，并export①它，elliptical就能找到
+libhfcal.so
+
+是不是有点复杂？是的，这就是为什么绝大部分使用动态库的程序
+要把动态库保存在标准目录下。在Linux和Mac中，动态库通常保存
+在/usr/lib或/usr/local/lib中；而在Windows中，程序员通常把.DLL和
+可执行文件保存在同一个目录下。
+
